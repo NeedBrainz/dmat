@@ -29,3 +29,13 @@ Use middleman normal build method ;)
 ```
 bundle exec middleman build
 ```
+
+### Deployment
+The easiest way to deplay your website is to follow DatoCMS documentation with Netlify:
+[https://www.datocms.com/docs/deployment/netlify/](https://www.datocms.com/docs/deployment/netlify/)
+
+In step 2 in addition to ``DATO_API_TOKEN`` don't forget to also add other env variable regarding dmat:
+
+* ``SITE_URL`` (ex: https://www.yoursite.com)
+* ``SITE_ENV`` (production or staging)
+* ``GA_ACCOUNT`` (Google Analytics Tracking ID ex: UA-XXXXX-X)
