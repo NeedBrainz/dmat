@@ -1,0 +1,13 @@
+---
+title: Welcome to Middleman
+---
+<% content_for(:meta) do %>
+  <%= dato_meta_tags(dato.homepage) %>
+<% end %>
+
+<div class="min-h-screen border-t-6 border-primary bg-pattern p-6 flex items-center justify-center">
+  <div class="text-center">
+    <h1><%= dato.homepage.title %></h1>
+    <h2 class="text-grey"><%= dato.homepage.subtitle %></h2>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "name": "middleman-amp-starter",
+  "version": "1.0.0",
+  "devDependencies": {
+    "autoprefixer": "^8.1.0",
+    "browser-sync": "^2.18.8",
+    "cssbeautify": "^0.3.1",
+    "cssnano": "^3.8.1",
+    "gulp": "^3.9.1",
+    "gulp-help": "^1.6.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-replace": "^0.6.1",
+    "gulp-util": "3.0.8",
+    "path": "^0.12.7",
+    "postcss": "6.0.19",
+    "postcss-calc": "^6.0.1",
+    "postcss-color-function": "^4.0.1",
+    "postcss-custom-media": "^6.0.0",
+    "postcss-custom-properties": "^7.0.0",
+    "postcss-discard-comments": "^2.0.4",
+    "postcss-import": "11.1.0",
+    "tailwindcss": "^0.5.1"
+  },
+  "dependencies": {}
+}
