@@ -1,4 +1,4 @@
-# [Middleman + DatoCMS + TailwindCSS AMP Starter Website](https://amp-demo.needbrainz.com/) ⚡
+# [DatoCMS + Middleman + AMP + Tailwind Starter Website] ⚡
 
 A starter site template to kickstart a middleman website with AMP pages tailwindcss and content from DatoCMS.
 
