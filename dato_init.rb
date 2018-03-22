@@ -22,7 +22,8 @@ item_type = client.item_types.create(
   tree: false,
   api_key: 'homepage',
   ordering_direction: nil,
-  ordering_field: nil
+  ordering_field: nil,
+  draft_mode_active: false
 )
 item_type_id = item_type[:id]
 
