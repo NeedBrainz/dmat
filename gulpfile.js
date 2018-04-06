@@ -1,14 +1,22 @@
-var gulp = require('gulp-help')(require('gulp')),
+var gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   tailwindcss = require('tailwindcss'),
-  browserSync = require('browser-sync').create();
+  browserSync = require('browser-sync').create(),
+  purgecss = require('gulp-purgecss');
 
 var
   dest         = '.tmp/',   // The "hot" build folder used by Middleman's external pipeline
   css_source   = ['css/*.css'],
   css_dest     = dest+'css/';
 
-gulp.task('postcss', 'build postcss files', function() {
+// Custom extractor for purgeCSS, to avoid stripping classes with `:` prefixes
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-z0-9-:\/]+/g) || [];
+  }
+}
+
+gulp.task('postcss', function() {
   const plugins = [
     require('postcss-import')(),
     tailwindcss('./tailwind.js'),
@@ -28,20 +36,33 @@ gulp.task('postcss', 'build postcss files', function() {
     .pipe(gulp.dest(css_dest));
 });
 
-gulp.task('build', ['postcss']);
+gulp.task('purgecss', gulp.series(function(done){
+  gulp.src(css_dest+'*.css')
+  .pipe(
+    purgecss({
+      content: ['source/**/*.erb'],
+      extractors: [
+          {
+            extractor: TailwindExtractor,
+            extensions: ["erb"]
+          }
+        ]
+    })
+  )
+  .pipe(gulp.dest(dest+'css/'))
+  done();
+}));
 
-gulp.task('css-watch', ['postcss'], function(done){
-    browserSync.reload();
-    done();
-});
+gulp.task('build', gulp.series('postcss', 'purgecss'));
 
-gulp.task('serve', ['postcss'], function() {
+gulp.task('serve', gulp.series('postcss', 'purgecss', function(done){
+  browserSync.init({
+      proxy: "http://localhost:4567",
+      reloadDelay: 1500
+  });
 
-    browserSync.init({
-        proxy: "http://localhost:4567",
-        reloadDelay: 1500
-    });
-
-    gulp.watch(['css/**/*.css'], ['css-watch']);
-    gulp.watch("source/**/*.{erb,html,haml}", function (e) { browserSync.reload(); });
-});
+  gulp.watch(['css/**/*.css', 'source/**/*.{erb,html,haml}'], gulp.series('postcss', 'purgecss', function(done){
+      browserSync.reload();
+      done();
+  }));
+}));
