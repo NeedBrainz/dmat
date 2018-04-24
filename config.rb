@@ -22,6 +22,15 @@ set :css_dir, "css"
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true, with_toc_data: true
 
+
+# AMP components
+@base_components = []
+if ENV['GA_ACCOUNT'] != ""
+  @base_components.push('analytics')
+end
+
+set :amp_components, @base_components
+
 # plugins
 activate :dato, live_reload: true
 
@@ -39,6 +48,105 @@ activate :external_pipeline,
 # Helpers
 ###
 helpers do
+  def amp_components(components)
+    base_url = "https://cdn.ampproject.org/v0/";
+    amp_components = {
+      #Ads and analytics
+      'ad'                    => { v: 0.1 },
+      'ad-exit'               => { v: 0.1 },
+      'analytics'             => { v: 0.1 },
+      'auto-ads'              => { v: 0.1 },
+      'call-tracking'         => { v: 0.1 },
+      'experiment'            => { v: 0.1 },
+      'sticky-ad'             => { v: 0.1 },
+      #Dynamic content
+      'acces-laterpay'        => { v: 0.2 }, #!also require access and analytics!
+      'acces'                 => { v: 0.1 }, #!also require analytics!
+      'bind'                  => { v: 0.1 },
+      'byside-content'        => { v: 0.1 },
+      'consent'               => { v: 0.1 },
+      'date-picker'           => { v: 0.1 },
+      'form'                  => { v: 0.1 },
+      'geo'                   => { v: 0.1 },
+      'gist'                  => { v: 0.1 },
+      'install-serviceworker' => { v: 0.1 },
+      'list'                  => { v: 0.1 },
+      'live-list'             => { v: 0.1 },
+      'mustache'              => { v: 0.1 },
+      'selector'              => { v: 0.1 },
+      'user-notification'     => { v: 0.1 },
+      'web-push'              => { v: 0.1 },
+      #Layout
+      'accordion'             => { v: 0.1 },
+      'app-banner'            => { v: 0.1 },
+      'carousel'              => { v: 0.1 },
+      'fx-flying-carpet'      => { v: 0.1 },
+      'iframe'                => { v: 0.1 },
+      'image-lightbox'        => { v: 0.1 },
+      'lightbox'              => { v: 0.1 },
+      'position-observer'     => { v: 0.1 },
+      'sidebar'               => { v: 0.1 },
+      #Media
+      '3q-player'             => { v: 0.1 },
+      'anim'                  => { v: 0.1 },
+      'apester-media'         => { v: 0.1 },
+      'audio'                 => { v: 0.1 },
+      'bodymovin-animation'   => { v: 0.1 },
+      'brid-player'           => { v: 0.1 },
+      'brightcove'            => { v: 0.1 },
+      'dailymotion'           => { v: 0.1 },
+      'google-vrview-image'   => { v: 0.1 },
+      'hulu'                  => { v: 0.1 },
+      'ima-video'             => { v: 0.1 },
+      'imgur'                 => { v: 0.1 },
+      'izlesene'              => { v: 0.1 },
+      'jwplayer'              => { v: 0.1 },
+      'kaltura-player'        => { v: 0.1 },
+      'nexxtv-player'         => { v: 0.1 },
+      'o2-player'             => { v: 0.1 },
+      'ooyala-player'         => { v: 0.1 },
+      'playbuzz'              => { v: 0.1 },
+      'reach-player'          => { v: 0.1 },
+      'soundcloud'            => { v: 0.1 },
+      'springboard-player'    => { v: 0.1 },
+      'video'                 => { v: 0.1 },
+      'vimeo'                 => { v: 0.1 },
+      'wistia-player'         => { v: 0.1 },
+      'youtube'               => { v: 0.1 },
+      #Presentation
+      'animation'             => { v: 0.1 },
+      'dynamic-css-classes'   => { v: 0.1 },
+      'fit-text'              => { v: 0.1 },
+      'font'                  => { v: 0.1 },
+      'mathml'                => { v: 0.1 },
+      'story'                 => { v: 0.1 },
+      'timeago'               => { v: 0.1 },
+      'viz-vega'              => { v: 0.1 },
+      #Social
+      'beopinion'             => { v: 0.1 },
+      'addthis'               => { v: 0.1 },
+      'facebook-comments'     => { v: 0.1 },
+      'facebook-like'         => { v: 0.1 },
+      'facebook-page'         => { v: 0.1 },
+      'facebook'              => { v: 0.1 },
+      'gfycat'                => { v: 0.1 },
+      'instagram'             => { v: 0.1 },
+      'pinterest'             => { v: 0.1 },
+      'reddit'                => { v: 0.1 },
+      'riddle-quiz'           => { v: 0.1 },
+      'social-share'          => { v: 0.1 },
+      'twitter'               => { v: 0.1 },
+      'vine'                  => { v: 0.1 },
+      'vk'                    => { v: 0.1 },
+    }
+    result = ""
+    components.uniq.each do |component|
+      if amp_components.has_key?(component)
+        result << "<script async custom-element=\"amp-#{component}\" src=\"#{base_url}amp-#{component}-#{amp_components[component][:v]}.js\"></script>"
+      end
+    end
+    result
+  end
   def inline_css(name)
     name += ".css" unless name.include?(".css")
     css_path = sitemap.resources.select { |p| p.source_file.include?(name) }.first

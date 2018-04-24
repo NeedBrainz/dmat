@@ -29,6 +29,31 @@ Use middleman normal build method ;)
 ```
 bundle exec middleman build
 ```
+### AMP components management
+The amp components are managed as a simple array passed from the config to the views. If you want for example to create a carousel gallery with lightbox from a dato modular block content for example:
+```
+<%
+config[:amp_components].push("carousel")
+config[:amp_components].push("image-lightbox")
+%>
+
+<amp-carousel
+  height="250"
+  layout="fixed-height"
+  type="carousel">
+  <% block.gallery.each_with_index do | image, index | %>
+    <amp-img on="tap:lightbox<%= block.id %>" src="<%= image.url(w: 1200, h: 1000, fit: :crop, fm: :jpg) %>"
+      role="button"
+      tabindex="<%= index %>"
+      width="300"
+      height="250"
+      alt="a sample image"></amp-img>
+  <% end %>
+</amp-carousel>
+<amp-image-lightbox id="lightbox<%= block.id %>" layout="nodisplay"></amp-image-lightbox>
+```
+The js components ``amp-carousel`` and ``amp-image-lightbox`` will be added in the head of the site only once even if the partial is called multiple times on the page.
+
 
 ### Deployment
 The easiest way to deplay your website is to follow DatoCMS documentation with Netlify:
