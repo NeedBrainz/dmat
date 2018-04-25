@@ -125,6 +125,17 @@ let colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  'dmat-grey-light': '#31363c',
+  'dmat-grey': '#2a3e51',
+  'dmat-red': '#ee5253',
+  'dmat-red-light': '#ff6b6b',
+  'dmat-blue': '#0abde3',
+  'dmat-blue-light': '#48dbfb',
+  'dmat-green': '#10ac84',
+  'dmat-green-light': '#1dd1a1',
+  'dmat-orange': '#ff9f43',
+  'dmat-orange-light': '#feca57',
 }
 
 module.exports = {
