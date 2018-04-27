@@ -21,11 +21,7 @@ gulp.task('postcss', function() {
     require('postcss-import')(),
     tailwindcss('./tailwind.js'),
     require('autoprefixer')(),
-    require('postcss-calc')(),
-    require('postcss-color-function')(),
-    require('postcss-custom-properties')(),
     require('postcss-discard-comments')(),
-    require('postcss-custom-media')(),
     require('cssnano')({zindex: false}),
   ];
   const replace = require('gulp-replace');

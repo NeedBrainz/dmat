@@ -22,20 +22,20 @@ set :css_dir, "css"
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true, with_toc_data: true
 
+# tell Middleman to ignore the template
+ignore "/templates/*"
 
 # AMP components
 @base_components = []
 if ENV['GA_ACCOUNT'] != ""
   @base_components.push('analytics')
 end
-
 set :amp_components, @base_components
 
 # plugins
+preview = ENV['SITE_ENV'] == 'staging' ? true:false
 activate :dato, live_reload: true
 
-# tell Middleman to ignore the template
-ignore "/templates/*"
 
 activate :directory_indexes
 activate :external_pipeline,

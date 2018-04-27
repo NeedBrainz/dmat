@@ -4,29 +4,11 @@ title: Welcome to Middleman
 <% content_for(:meta) do %>
   <%= dato_meta_tags(dato.homepage) %>
 <% end %>
-<div class="flex absolute pin-t pin-x h-2 md:h-4 items-stretch">
-  <div class="bg-dmat-red-light flex-1"></div>
-  <div class="bg-dmat-red flex-1"></div>
-  <div class="bg-dmat-blue-light flex-1"></div>
-  <div class="bg-dmat-blue flex-1"></div>
-  <div class="bg-dmat-green-light flex-1"></div>
-  <div class="bg-dmat-green flex-1"></div>
-  <div class="bg-dmat-orange-light flex-1"></div>
-  <div class="bg-dmat-orange flex-1"></div>
-</div>
-<div class="min-h-screen bg-pattern p-6 flex items-center justify-center text-dmat-grey">
+
+<div class="min-h-screen bg-pattern p-6 flex items-center justify-center text-grey-dark">
   <div class="text-center">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 404.83211 399.34959" width="400" class="p-4 max-w-full"><path d="M202.4199 0c-47.6117 17.3876-94.6584 36.31633-142.6543 52.64453C39.8446 100.74163 19.9215 148.8403 0 196.9375c19.7596 47.7112 39.5196 95.42149 59.2793 143.1328 47.7123 19.7597 95.4245 39.5195 143.1367 59.2793 47.7123-19.7598 95.4245-39.5196 143.1368-59.2793 19.7598-47.71131 39.5195-95.4216 59.2793-143.1328-19.7959-47.796-39.5909-95.59267-59.3868-143.38867C297.7704 35.70123 250.0943 17.8375 202.4199 0zm0 14.8457l132.4844 49.61133 54.877 132.48242-54.877 132.48243-132.4844 54.87695-132.4824-54.87695-54.875-132.48243L69.9394 64.45703 202.4218 14.8457zm0 29.86719L93.1328 87.65039 47.8633 196.93945l45.2715 109.2871 109.2871 45.26954 109.2891-45.26953 45.2695-109.28711L311.711 87.65039l-109.2891-42.9375z" fill="#2a3e51"/><path d="M259.7819 185.35073c.7612-1.01854 1.2974-2.21924 1.2974-3.58627 0-3.3719-2.7287-6.10058-6.1006-6.10058h-.595l-37.6161.0485 12.3888-73.26992-12.4265-.0539-67.2448 112.14087s-1.3456 2.44978-1.3456 3.89738c0 3.37158 2.7288 6.10026 6.1006 6.10026.1668 0 .5201-.0183.5201-.0183l37.4231-.0485-12.0827 73.15756 12.2221.00032 67.4644-112.275v.00012z" fill="#fff" fill-rule="evenodd"/><path d="M311.7058 87.65098l23.1952-23.193-132.4841-49.6126v29.8684z" fill="#ee5253"/><path d="M356.9739 196.93848h32.8031l-54.876-132.4805-23.1952 23.1916z" fill="#48dbfb"/><path d="M311.7058 306.2261l23.1955 23.1954 54.8757-132.48182-32.8019-.0001z" fill="#0abde3"/><path d="M202.4169 351.4967v32.802l132.4841-54.8772-23.1952-23.1954z" fill="#1dd1a1"/><path d="M93.128 87.65098l-23.1953-23.193 132.4842-49.6126v29.8684z" fill="#ff6b6b"/><path d="M47.8599 196.93848H15.0568l54.8759-132.4819 23.1953 23.193z" fill="#ff9f43"/><path d="M93.128 306.2261l-23.1957 23.1954-54.8755-132.48182h32.8014z" fill="#feca57"/><path d="M202.4169 351.4967v32.802L69.9327 329.4215l23.1953-23.1954z" fill="#10ac84"/></svg>
     <h1 class="text-2xl md:text-3xl my-2"><%= dato.homepage.title %></h1>
-    <h2 class="text-xl md:text-2xl text-dmat-grey-light my-2">
-      <span class="text-dmat-red font-bold">D</span><span class="">atoCMS</span>
-      <span class="text-grey"> + </span>
-      <span class="text-dmat-blue font-bold">M</span><span class="">iddleman</span>
-      <span class="text-grey"> + </span>
-      <span class="text-dmat-green font-bold">A</span><span class="">MP</span>
-      <span class="text-grey"> + </span>
-      <span class="text-dmat-orange font-bold">T</span><span class="">ailwindCSS</span>
-    </h2>
-    <a href="https://github.com/NeedBrainz/dmat" target="_blank" class="inline-block my-2 py-4 px-8 rounded-full border-4 border-dmat-grey-light text-dmat-grey-light no-underline font-bold text-xl hover:text-white hover:bg-dmat-grey">Github</a>
+    <h2 class="text-xl md:text-2xl text-grey my-2"><%= dato.homepage.subtitle %></h2>
+    <a href="https://github.com/NeedBrainz/dmat" target="_blank" class="inline-block my-2 py-4 px-8 rounded-full border-4 border-grey-dark text-grey-dark no-underline font-bold text-xl hover:text-white hover:bg-grey-dark">Github</a>
   </div>
 </div>
