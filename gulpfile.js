@@ -21,8 +21,7 @@ gulp.task('postcss', function() {
     require('postcss-import')(),
     tailwindcss('./tailwind.js'),
     require('autoprefixer')(),
-    require('postcss-discard-comments')(),
-    require('cssnano')({zindex: false}),
+    require('cssnano')({zindex: false, discardComments: {removeAll: true}}),
   ];
   const replace = require('gulp-replace');
   const options = {};
