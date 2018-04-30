@@ -5,8 +5,8 @@
     "dev": "bundle exec middleman server"
   },
   "devDependencies": {
-    "autoprefixer": "^8.3.0",
-    "browser-sync": "^2.23.7",
+    "autoprefixer": "^8.4.1",
+    "browser-sync": "^2.24.1",
     "cssnano": "^3.8.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-help": "^1.6.1",
@@ -15,7 +15,7 @@
     "gulp-replace": "^0.6.1",
     "gulp-util": "3.0.8",
     "path": "^0.12.7",
-    "postcss": "6.0.21",
+    "postcss": "^6.0.22",
     "postcss-import": "11.1.0",
     "tailwindcss": "^0.5.2"
   },
