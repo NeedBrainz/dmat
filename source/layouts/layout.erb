@@ -9,12 +9,15 @@
     <% else %>
       <meta name="robots" content="noindex, nofollow">
     <% end %>
+    <% if ENV['GA_ACCOUNT'] != ''
+      add_component('analytics')
+    end %>
     <link rel="canonical" href="<%= ENV['SITE_URL'] %><%= current_page.url %>" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <style amp-custom><%= inline_css "base" %><%= yield_content :css %></style>
     <%= dato_favicon_meta_tags %>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-    <%= amp_components(config[:amp_components]) %>
+    <%= render_components() %>
     <%= yield_content :head %>
   </head>
 

@@ -30,11 +30,11 @@ Use middleman normal build method ;)
 bundle exec middleman build
 ```
 ### AMP components management
-The amp components are managed as a simple array passed from the config to the views. If you want for example to create a carousel gallery with lightbox from a dato modular block content for example:
+The amp components are managed as a simple array set in the currrent page metadata. You can add components from any template/layout/partial with the helper add_component(name). If you want for example to create a carousel gallery with lightbox from a dato modular block content for example:
 ```
 <%
-config[:amp_components].push("carousel")
-config[:amp_components].push("image-lightbox")
+add_component("carousel")
+add_component("image-lightbox")
 %>
 
 <amp-carousel

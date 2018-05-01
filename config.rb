@@ -25,13 +25,6 @@ set :markdown, fenced_code_blocks: true, smartypants: true, with_toc_data: true
 # tell Middleman to ignore the template
 ignore "/templates/*"
 
-# AMP components
-@base_components = []
-if ENV['GA_ACCOUNT'] != ""
-  @base_components.push('analytics')
-end
-set :amp_components, @base_components
-
 # plugins
 preview = ENV['SITE_ENV'] == 'staging' ? true:false
 activate :dato, live_reload: true
@@ -48,7 +41,7 @@ activate :external_pipeline,
 # Helpers
 ###
 helpers do
-  def amp_components(components)
+  def render_components()
     base_url = "https://cdn.ampproject.org/v0/";
     amp_components = {
       #Ads and analytics
@@ -140,12 +133,20 @@ helpers do
       'vk'                    => { v: 0.1 },
     }
     result = ""
+    components = []
+    components = current_page.metadata['amp_components'] if current_page.metadata.has_key?('amp_components')
     components.uniq.each do |component|
       if amp_components.has_key?(component)
         result << "<script async custom-element=\"amp-#{component}\" src=\"#{base_url}amp-#{component}-#{amp_components[component][:v]}.js\"></script>"
       end
     end
     result
+  end
+  def add_component(name)
+    c = []
+    c = current_page.metadata['amp_components'] if current_page.metadata.has_key?('amp_components')
+    c.push(name) unless c.include?(name)
+    current_page.add_metadata({'amp_components' => c })
   end
   def inline_css(name)
     name += ".css" unless name.include?(".css")
